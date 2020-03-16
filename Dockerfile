@@ -7,9 +7,9 @@ RUN git --version && \
 FROM solr:7
 EXPOSE 8983
 USER solr
-COPY --from=git --chown=solr:solr /opt/mir-solr/configsets/ /opt/solr/server/solr/configsets/
+COPY --from=git --chown=solr:solr /opt/mir-solr/ /opt/solr/server/solr/
 WORKDIR /opt/solr
 USER $SOLR_USER
-COPY init-cores.sh /docker-entrypoint-initdb.d/
+ENV INIT_SOLR_HOME "yes"
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["solr-foreground"]
