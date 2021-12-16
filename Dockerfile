@@ -16,6 +16,7 @@ RUN rm /opt/solr/server/lib/ext/log4j-core-2.11.0.jar &&\
     rm /opt/solr/server/lib/ext/log4j-api-2.11.0.jar &&\
     rm /opt/solr/server/lib/ext/log4j-slf4j-impl-2.11.0.jar &&\
     rm /opt/solr/server/lib/ext/log4j-1.2-api-2.11.0.jar
+RUN chown $SOLR_USER -R /opt/solr/server/lib/ext/*
 ENV INIT_SOLR_HOME "yes"
 ENV SOLR_HOME "/var/solr-data"/
 CMD ["solr-foreground", "-force"]
